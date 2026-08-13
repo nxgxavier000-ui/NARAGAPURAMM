@@ -19,21 +19,24 @@ module.exports = async (client, config, colors) => {
         }
     }
 
-    // ✅ Register commands to Discord
-    const rest = new REST({ version: '10' }).setToken(process.env.TOKEN || config.token);
+ // ✅ Register commands to Discord
+const rest = new REST({ version: '10' }).setToken(
+    process.env.BOT_API || process.env.TOKEN || config.token
+);
 
-    try {
-        const registeredCommands = await rest.get(
-            Routes.applicationCommands(client.user.id)
-        );
-
+try {
+    console.log('\n' + '—'.repeat(40));
+    console.log(
+        `${colors.yellow}${colors.bright}⚡ REGISTERING SLASH COMMANDS${colors.reset}`
+    );
+    
         console.log('\n' + '─'.repeat(40));
         console.log(`${colors.yellow}${colors.bright}⚡ SLASH COMMANDS${colors.reset}`);
         console.log('─'.repeat(40));
 
-        if (registeredCommands.length !== commands.length) {
-            console.log(`${colors.red}[ LOADER ]${colors.reset} ${colors.green}Loading Slash Commands 🛠️${colors.reset}`);
-        }
+       if (registeredCommands.length !== commands.length) {
+    console.log(`${colors.red}[ LOADER ]${colors.reset} ${colors.green}Loading Slash Commands ⚡${colors.reset}`);
+}
 
         await rest.put(
             Routes.applicationCommands(client.user.id),
