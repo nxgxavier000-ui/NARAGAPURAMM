@@ -29,22 +29,22 @@ try {
     console.log(
         `${colors.yellow}${colors.bright}⚡ REGISTERING SLASH COMMANDS${colors.reset}`
     );
-    
-        console.log('\n' + '─'.repeat(40));
-        console.log(`${colors.yellow}${colors.bright}⚡ SLASH COMMANDS${colors.reset}`);
-        console.log('─'.repeat(40));
 
-       if (registeredCommands.length !== commands.length) {
-    console.log(`${colors.red}[ LOADER ]${colors.reset} ${colors.green}Loading Slash Commands ⚡${colors.reset}`);
+    console.log('\n' + '—'.repeat(40));
+    console.log(`${colors.yellow}${colors.bright}⚡ SLASH COMMANDS${colors.reset}`);
+    console.log('—'.repeat(40));
+
+    await rest.put(
+        Routes.applicationCommands(client.user.id),
+        { body: commands }
+    );
+
+    console.log(
+        `${colors.red}[ LOADER ]${colors.reset} ${colors.green}Successfully Loaded Slash Commands ✅${colors.reset}`
+    );
+
+} catch (error) {
+    console.log(
+        `${colors.red}[ ERROR ]${colors.reset} ${colors.red}${error}${colors.reset}`
+    );
 }
-
-        await rest.put(
-            Routes.applicationCommands(client.user.id),
-            { body: commands }
-        );
-
-        console.log(`${colors.red}[ LOADER ]${colors.reset} ${colors.green}Successfully Loaded Slash Commands ✅${colors.reset}`);
-    } catch (error) {
-        console.log(`${colors.red}[ ERROR ]${colors.reset} ${colors.red}${error}${colors.reset}`);
-    }
-};
