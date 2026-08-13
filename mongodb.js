@@ -23,8 +23,9 @@ async function connectToDatabase() {
         console.log('\x1b[36m[ MONGOOSE ]\x1b[0m', '\x1b[32mConnected using Mongoose ✅\x1b[0m');
 
     } catch (err) {
-        console.error("❌ Error connecting to MongoDB or Mongoose", err);
-    }
+    console.error("❌ Error connecting to MongoDB or Mongoose:", err);
+    throw err;
+}
 }
 
 const db = client.db("discord-bot");
