@@ -6,7 +6,7 @@ const configPath = path.join(__dirname, 'config.json');
 require('dotenv').config(); 
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
-const uri = config.mongodbUri || process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI || config.mongoDbUri;
 const client = new MongoClient(uri);
 const mongoose = require('mongoose');
 
